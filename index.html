@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstructCalc Pro - Construction Calculator Suite</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <div class="logo-text">
+                    <span class="logo-main">ConstructCalc</span>
+                    <span class="logo-sub">Pro</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#calculators" class="nav-link">Calculators</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn-secondary">
+                    <i class="fas fa-download"></i> Export PDF
+                </button>
+                <button class="btn-primary">
+                    <i class="fas fa-user"></i> Login
+                </button>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section" id="home">
+                <div class="hero-content">
+                    <h1 class="hero-title">Smart Construction Calculator Suite</h1>
+                    <p class="hero-subtitle">Accurate material estimates, cost calculations, and project planning for construction professionals</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Calculators</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <div class="card concrete">Concrete</div>
+                        <div class="card brickwork">Brickwork</div>
+                        <div class="card steel">Steel</div>
+                        <div class="card paint">Paint</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Suite -->
+            <section class="calculator-section" id="calculators">
+                <div class="section-header">
+                    <h2>Construction Calculators</h2>
+                    <p>Choose from our specialized calculators for accurate material estimation</p>
+                </div>
+
+                <!-- Calculator Tabs -->
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" data-tab="concrete">
+                        <i class="fas fa-cube"></i>
+                        Concrete
+                    </button>
+                    <button class="tab-btn" data-tab="brickwork">
+                        <i class="fas fa-border-all"></i>
+                        Brickwork
+                    </button>
+                    <button class="tab-btn" data-tab="plaster">
+                        <i class="fas fa-trowel"></i>
+                        Plaster
+                    </button>
+                    <button class="tab-btn" data-tab="flooring">
+                        <i class="fas fa-th-large"></i>
+                        Flooring
+                    </button>
+                    <button class="tab-btn" data-tab="paint">
+                        <i class="fas fa-paint-roller"></i>
+                        Paint
+                    </button>
+					
+					<button class="tab-btn" data-tab="solar"><i class="fas fa-solar-panel"></i> Solar Rooftop</button>
+					<button class="tab-btn" data-tab="tank"><i class="fas fa-water"></i> Water Tank</button>
+					<button class="tab-btn" data-tab="roofing"><i class="fas fa-home"></i> Roofing</button>
+
+					
+                    <button class="tab-btn" data-tab="steel">
+                        <i class="fas fa-grip-lines"></i>
+                        Steel
+                    </button>
+                    <button class="tab-btn" data-tab="excavation">
+                        <i class="fas fa-mountain"></i>
+                        Excavation
+                    </button>
+                    <button class="tab-btn" data-tab="quick-tools">
+                        <i class="fas fa-tools"></i>
+                        Quick Tools
+                    </button>
+					
+
+                </div>
+
+                <!-- Unit Selector -->
+                <div class="unit-selector-group">
+                    <label><i class="fas fa-ruler-combined"></i> Measurement Units</label>
+                    <select id="unitSystem">
+                        <option value="m">Meters (m)</option>
+                        <option value="cm">Centimeters (cm)</option>
+                        <option value="ft">Feet (ft)</option>
+                        <option value="in">Inches (in)</option>
+                    </select>
+                </div>
+
+                <!-- CONCRETE CALCULATOR -->
+                <div id="concrete" class="tab-content active">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-cube"></i> Structure Type</label>
+                            <select id="structureType">
+                                <option value="slab">Slab</option>
+                                <option value="beam">Beam</option>
+                                <option value="column">Column</option>
+                                <option value="circular-column">Circular Column</option>
+                                <option value="stair">Staircase</option>
+                                <option value="footing">Footing</option>
+                                <option value="wall">Concrete Wall</option>
+                            </select>
+                        </div>
+
+                        <!-- Dynamic inputs based on structure type -->
+                        <div id="structureInputs">
+                            <!-- Default inputs for slab -->
+                            <div class="input-group">
+                                <label><i class="fas fa-ruler"></i> Length</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="length" placeholder="Enter length" step="0.01" value="5">
+                                    <select class="unit-selector-small" id="lengthUnit">
+                                        <option value="m">m</option>
+                                        <option value="cm">cm</option>
+                                        <option value="mm">mm</option>
+                                        <option value="ft">ft</option>
+                                        <option value="in">in</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label><i class="fas fa-ruler"></i> Width</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="width" placeholder="Enter width" step="0.01" value="3">
+                                    <select class="unit-selector-small" id="widthUnit">
+                                        <option value="m">m</option>
+                                        <option value="cm">cm</option>
+                                        <option value="mm">mm</option>
+                                        <option value="ft">ft</option>
+                                        <option value="in">in</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label><i class="fas fa-ruler"></i> Thickness/Height</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="height" placeholder="Enter height" step="0.01" value="0.15">
+                                    <select class="unit-selector-small" id="heightUnit">
+                                        <option value="m">m</option>
+                                        <option value="cm">cm</option>
+                                        <option value="mm">mm</option>
+                                        <option value="ft">ft</option>
+                                        <option value="in">in</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label><i class="fas fa-cubes"></i> Number of Units</label>
+                                <input type="number" id="quantity" value="1" min="1">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-balance-scale"></i> Mix Ratio</label>
+                            <select id="mix">
+                                <option value="1:1.5:3">1:1.5:3 (M20)</option>
+                                <option value="1:2:4">1:2:4 (M15)</option>
+                                <option value="1:1:2">1:1:2 (M25)</option>
+                                <option value="1:3:6">1:3:6 (M10)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-trash"></i> Waste (%)</label>
+                            <input type="number" id="waste" value="5" min="0" max="50">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-industry"></i> Cement Brand</label>
+                            <select id="cementBrand">
+                                <option value="ultratech">Ultratech (₹390/bag)</option>
+                                <option value="ambuja">Ambuja (₹370/bag)</option>
+                                <option value="acc">ACC (₹380/bag)</option>
+                                <option value="dalmia">Dalmia (₹400/bag)</option>
+                            </select>
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="calcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Concrete Calculation Results</h3>
+                            <p><strong>Total Volume:</strong> <span id="volText">0 m³</span></p>
+                            <p><strong>Cement Required:</strong> <span id="cementText">0 bags</span></p>
+                            <p><strong>Sand Required:</strong> <span id="sandText">0 tons</span></p>
+                            <p><strong>Aggregate Required:</strong> <span id="aggText">0 tons</span></p>
+                            <p><strong>Estimated Cost:</strong> <span id="costText">—</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Material Breakdown</h3>
+                            <canvas id="materialChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box cement"></span> Cement</div>
+                                <div><span class="legend-box sand"></span> Sand</div>
+                                <div><span class="legend-box aggregate"></span> Aggregate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BRICKWORK CALCULATOR -->
+                <div id="brickwork" class="tab-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-wall"></i> Wall Type</label>
+                            <select id="wallType">
+                                <option value="single">Single Brick Wall</option>
+                                <option value="double">Double Brick Wall</option>
+                                <option value="partition">Partition Wall</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Wall Length</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="wallLength" placeholder="Enter length" step="0.01" value="4">
+                                <select class="unit-selector-small" id="wallLengthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+								
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Wall Height</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="wallHeight" placeholder="Enter height" step="0.01" value="3">
+                                <select class="unit-selector-small" id="wallHeightUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label><i class="fas fa-cubes"></i> Number of Walls</label>
+                            <input type="number" id="wallQuantity" value="1" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-trash"></i> Wastage (%)</label>
+                            <input type="number" id="brickWaste" value="5" min="0" max="20">
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button id="brickCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="brickResetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Brickwork Results</h3>
+                            <p><strong>Bricks Required:</strong> <span id="bricksText">0</span></p>
+                            <p><strong>Mortar Required:</strong> <span id="mortarText">0 m³</span></p>
+                            <p><strong>Cement for Mortar:</strong> <span id="brickCementText">0 bags</span></p>
+                            <p><strong>Sand for Mortar:</strong> <span id="brickSandText">0 tons</span></p>
+                            <p><strong>Total Cost:</strong> <span id="brickCostText">—</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Cost Breakdown</h3>
+                            <canvas id="brickworkChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box bricks"></span> Bricks</div>
+                                <div><span class="legend-box cement"></span> Cement</div>
+                                <div><span class="legend-box sand"></span> Sand</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLASTER CALCULATOR -->
+                <div id="plaster" class="tab-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Wall Length</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="plasterLength" placeholder="Enter length" step="0.01" value="4">
+                                <select class="unit-selector-small" id="plasterLengthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Wall Height</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="plasterHeight" placeholder="Enter height" step="0.01" value="3">
+                                <select class="unit-selector-small" id="plasterHeightUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label><i class="fas fa-layer-group"></i> Plaster Thickness (mm)</label>
+                            <input type="number" id="plasterThickness" value="12" min="6" max="25" step="1">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label><i class="fas fa-cubes"></i> Number of Walls</label>
+                            <input type="number" id="plasterQuantity" value="1" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-trash"></i> Wastage (%)</label>
+                            <input type="number" id="plasterWaste" value="5" min="0" max="20">
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button id="plasterCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="plasterResetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Plaster Results</h3>
+                            <p><strong>Total Area:</strong> <span id="plasterAreaText">0 m²</span></p>
+                            <p><strong>Cement Required:</strong> <span id="plasterCementText">0 bags</span></p>
+                            <p><strong>Sand Required:</strong> <span id="plasterSandText">0 tons</span></p>
+                            <p><strong>Estimated Cost:</strong> <span id="plasterCostText">—</span></p>
+                            <p><strong>Labor Time:</strong> <span id="plasterLaborText">—</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Material Ratio</h3>
+                            <canvas id="plasterChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box cement"></span> Cement</div>
+                                <div><span class="legend-box sand"></span> Sand</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FLOORING CALCULATOR -->
+                <div id="flooring" class="tab-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Room Length</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="floorLength" placeholder="Room length" step="0.01" value="4">
+                                <select class="unit-selector-small" id="floorLengthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Room Width</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="floorWidth" placeholder="Room width" step="0.01" value="3">
+                                <select class="unit-selector-small" id="floorWidthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-border-all"></i> Tile Length (cm)</label>
+                            <input type="number" id="tileLength" placeholder="Tile length" step="0.1" value="30" min="5">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-border-all"></i> Tile Width (cm)</label>
+                            <input type="number" id="tileWidth" placeholder="Tile width" step="0.1" value="30" min="5">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-tag"></i> Tile Price (per piece)</label>
+                            <input type="number" id="tilePrice" placeholder="Price per tile" value="45" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-trash"></i> Wastage (%)</label>
+                            <input type="number" id="tileWaste" value="10" min="0" max="50">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-layer-group"></i> Grout Joint Width (mm)</label>
+                            <input type="number" id="groutWidth" value="3" step="0.5" min="0">
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="floorCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="floorResetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Flooring Results</h3>
+                            <p><strong>Room Area:</strong> <span id="roomAreaText">0 m²</span></p>
+                            <p><strong>Tiles Required:</strong> <span id="tilesText">0</span></p>
+                            <p><strong>Total Tile Cost:</strong> <span id="tileCostText">—</span></p>
+                            <p><strong>Grout Required:</strong> <span id="groutText">0 kg</span></p>
+                            <p><strong>Adhesive Required:</strong> <span id="adhesiveText">0 kg</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Cost Breakdown</h3>
+                            <canvas id="flooringChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box tiles"></span> Tiles</div>
+                                <div><span class="legend-box adhesive"></span> Adhesive</div>
+                                <div><span class="legend-box grout"></span> Grout</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINT CALCULATOR -->
+                <div id="paint" class="tab-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Wall Length</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="paintLength" placeholder="Wall length" step="0.01" value="4">
+                                <select class="unit-selector-small" id="paintLengthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Wall Height</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="paintHeight" placeholder="Wall height" step="0.01" value="3">
+                                <select class="unit-selector-small" id="paintHeightUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-door-open"></i> Number of Doors</label>
+                            <input type="number" id="doorsCount" value="1" min="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-window-maximize"></i> Number of Windows</label>
+                            <input type="number" id="windowsCount" value="2" min="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-layer-group"></i> Number of Coats</label>
+                            <input type="number" id="coatsCount" value="2" min="1" max="5">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-fill-drip"></i> Paint Coverage (m²/liter)</label>
+                            <input type="number" id="paintCoverage" value="12" step="0.1" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-tag"></i> Paint Price (per liter)</label>
+                            <input type="number" id="paintPrice" value="250" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-trash"></i> Wastage (%)</label>
+                            <input type="number" id="paintWaste" value="5" min="0" max="30">
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="paintCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="paintResetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Paint Results</h3>
+                            <p><strong>Total Paintable Area:</strong> <span id="paintAreaText">0 m²</span></p>
+                            <p><strong>Paint Required:</strong> <span id="paintLitersText">0 liters</span></p>
+                            <p><strong>Number of Cans (4L):</strong> <span id="paintCansText">0</span></p>
+                            <p><strong>Total Paint Cost:</strong> <span id="paintCostText">—</span></p>
+                            <p><strong>Labor Time Estimate:</strong> <span id="laborTimeText">—</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Area Breakdown</h3>
+                            <canvas id="paintChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box walls"></span> Walls</div>
+                                <div><span class="legend-box doors"></span> Doors</div>
+                                <div><span class="legend-box windows"></span> Windows</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEEL CALCULATOR -->
+                <div id="steel" class="tab-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-cube"></i> Structure Type</label>
+                            <select id="steelStructureType">
+                                <option value="slab">Slab</option>
+                                <option value="beam">Beam</option>
+                                <option value="column">Column</option>
+                                <option value="footing">Footing</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Length</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="steelLength" placeholder="Length" step="0.01" value="5">
+                                <select class="unit-selector-small" id="steelLengthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Width</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="steelWidth" placeholder="Width" step="0.01" value="0.23">
+                                <select class="unit-selector-small" id="steelWidthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Height/Depth</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="steelHeight" placeholder="Height" step="0.01" value="0.45">
+                                <select class="unit-selector-small" id="steelHeightUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-arrows-alt-h"></i> Bar Diameter (mm)</label>
+                            <select id="barDiameter">
+                                <option value="8">8mm</option>
+                                <option value="10">10mm</option>
+                                <option value="12" selected>12mm</option>
+                                <option value="16">16mm</option>
+                                <option value="20">20mm</option>
+                                <option value="25">25mm</option>
+                                <option value="32">32mm</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler-combined"></i> Bar Spacing (mm)</label>
+                            <input type="number" id="barSpacing" value="150" min="50" max="300">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-tag"></i> Steel Price (per kg)</label>
+                            <input type="number" id="steelPrice" value="65" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-trash"></i> Wastage (%)</label>
+                            <input type="number" id="steelWaste" value="5" min="0" max="20">
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="steelCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="steelResetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Steel Results</h3>
+                            <p><strong>Total Steel Weight:</strong> <span id="steelWeightText">0 kg</span></p>
+                            <p><strong>Number of Bars:</strong> <span id="barsCountText">0</span></p>
+                            <p><strong>Total Bar Length:</strong> <span id="barsLengthText">0 m</span></p>
+                            <p><strong>Total Steel Cost:</strong> <span id="steelCostText">—</span></p>
+                            <p><strong>Steel per m³:</strong> <span id="steelPerCubeText">0 kg/m³</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Weight Distribution</h3>
+                            <canvas id="steelChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box main-bars"></span> Main Bars</div>
+                                <div><span class="legend-box dist-bars"></span> Distribution</div>
+                                <div><span class="legend-box stirrups"></span> Stirrups</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXCAVATION CALCULATOR -->
+                <div id="excavation" class="tab-content">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label><i class="fas fa-cube"></i> Excavation Type</label>
+                            <select id="excavationType">
+                                <option value="trench">Trench</option>
+                                <option value="pit">Pit</option>
+                                <option value="slope">Slope</option>
+                                <option value="basement">Basement</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Length</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="excLength" placeholder="Length" step="0.01" value="10">
+                                <select class="unit-selector-small" id="excLengthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Width</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="excWidth" placeholder="Width" step="0.01" value="1">
+                                <select class="unit-selector-small" id="excWidthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-ruler"></i> Depth</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="excDepth" placeholder="Depth" step="0.01" value="1.5">
+                                <select class="unit-selector-small" id="excDepthUnit">
+                                    <option value="m">m</option>
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                    <option value="in">in</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-mountain"></i> Soil Type</label>
+                            <select id="soilType">
+                                <option value="ordinary">Ordinary Soil</option>
+                                <option value="hard">Hard Soil</option>
+                                <option value="rock">Rock</option>
+                                <option value="clay">Clay</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-truck-pickup"></i> Truck Capacity (m³)</label>
+                            <input type="number" id="truckCapacity" value="6" step="0.5" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-tag"></i> Excavation Rate (per m³)</label>
+                            <input type="number" id="excavationRate" value="150" min="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-truck-loading"></i> Transportation Rate (per m³)</label>
+                            <input type="number" id="transportRate" value="80" min="1">
+                        </div>
+
+                        <div class="btn-group">
+                            <button id="excCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                            <button id="excResetBtn"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="output-section">
+                        <div class="results">
+                            <h3><i class="fas fa-calculator"></i> Excavation Results</h3>
+                            <p><strong>Total Volume:</strong> <span id="excVolumeText">0 m³</span></p>
+                            <p><strong>Number of Trucks:</strong> <span id="trucksCountText">0</span></p>
+                            <p><strong>Excavation Cost:</strong> <span id="excCostText">—</span></p>
+                            <p><strong>Transportation Cost:</strong> <span id="transportCostText">—</span></p>
+                            <p><strong>Total Cost:</strong> <span id="totalExcCostText">—</span></p>
+                        </div>
+
+                        <div class="chart-card">
+                            <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Cost Breakdown</h3>
+                            <canvas id="excavationChart"></canvas>
+                            <div class="chart-legend">
+                                <div><span class="legend-box excavation"></span> Excavation</div>
+                                <div><span class="legend-box transport"></span> Transport</div>
+                                <div><span class="legend-box labor"></span> Labor</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+<!-- WATER TANK CALCULATOR -->
+<div id="tank" class="tab-content">
+  <div class="input-section">
+    <div class="input-group">
+      <label><i class="fas fa-ruler-horizontal"></i> Length (m)</label>
+      <input type="number" id="tankLength" value="12" step="0.1">
+    </div>
+    <div class="input-group">
+      <label><i class="fas fa-ruler-vertical"></i> Width (m)</label>
+      <input type="number" id="tankWidth" value="9" step="0.1">
+    </div>
+    <div class="input-group">
+      <label><i class="fas fa-ruler"></i> Depth (m)</label>
+      <input type="number" id="tankDepth" value="15" step="0.1">
+    </div>
+    <div class="btn-group">
+      <button id="tankCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+      <button id="tankResetBtn"><i class="fas fa-redo"></i> Reset</button>
+    </div>
+  </div>
+
+  <div class="output-section">
+    <div class="results">
+      <h3><i class="fas fa-water"></i> Water Tank Capacity</h3>
+      <p><strong>Total Volume:</strong> <span id="tankVolumeText">—</span></p>
+      <p><strong>Total Volume (ft³):</strong> <span id="tankVolumeFtText">—</span></p>
+      <p><strong>Capacity:</strong> <span id="tankCapacityText">—</span></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- SOLAR ROOFTOP CALCULATOR -->
+<div id="solar" class="tab-content">
+  <div class="input-section">
+    <div class="input-group">
+      <label><i class="fas fa-solar-panel"></i> Roof Area (m²)</label>
+      <input type="number" id="solarArea" value="100">
+    </div>
+    <div class="input-group">
+      <label><i class="fas fa-bolt"></i> Panel Wattage (W)</label>
+      <input type="number" id="panelWatt" value="350">
+    </div>
+    <div class="input-group">
+      <label><i class="fas fa-percentage"></i> Efficiency (%)</label>
+      <input type="number" id="efficiency" value="18">
+    </div>
+    <div class="input-group">
+      <label><i class="fas fa-sun"></i> Average Sunlight (hrs/day)</label>
+      <input type="number" id="sunlight" value="5">
+    </div>
+    <div class="btn-group">
+      <button id="solarCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+      <button id="solarResetBtn"><i class="fas fa-redo"></i> Reset</button>
+    </div>
+  </div>
+
+  <div class="output-section">
+    <div class="results">
+      <h3><i class="fas fa-solar-panel"></i> Solar Rooftop Results</h3>
+      <p><strong>Total Power:</strong> <span id="solarPowerText">—</span></p>
+      <p><strong>Daily Energy Output:</strong> <span id="solarEnergyText">—</span></p>
+      <p><strong>Estimated Daily Savings:</strong> <span id="solarSavingsText">—</span></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ROOFING CALCULATOR -->
+<div id="roofing" class="tab-content">
+  <div class="input-section">
+    <div class="input-group">
+      <label><i class="fas fa-arrow-up"></i> Roof Rise (S)</label>
+      <input type="number" id="roofRise" value="10" step="0.1">
+    </div>
+    <div class="input-group">
+      <label><i class="fas fa-arrows-alt-h"></i> Roof Run (N)</label>
+      <input type="number" id="roofRun" value="15" step="0.1">
+    </div>
+    <div class="btn-group">
+      <button id="roofCalcBtn"><i class="fas fa-calculator"></i> Calculate</button>
+      <button id="roofResetBtn"><i class="fas fa-redo"></i> Reset</button>
+    </div>
+  </div>
+
+  <div class="output-section">
+    <div class="results">
+      <h3><i class="fas fa-calculator"></i> Roof Pitch Calculation</h3>
+      <p><strong>Roof Pitch:</strong> <span id="roofPitchText">—</span></p>
+      <p><strong>Slope (%):</strong> <span id="roofSlopeText">—</span></p>
+      <p><strong>Angle (°):</strong> <span id="roofAngleText">—</span></p>
+    </div>
+    <div class="chart-card">
+      <img src="images/roof-diagram.png" alt="Roof pitch diagram" style="max-width:250px;">
+      <p style="margin-top:1rem;color:#555;">Rise vs Run representation</p>
+    </div>
+  </div>
+</div>
+
+
+                <!-- QUICK TOOLS CALCULATOR -->
+                <div id="quick-tools" class="tab-content">
+                    <div class="quick-tools-grid">
+                        <div class="tool-card">
+                            <h3><i class="fas fa-exchange-alt"></i> Unit Converter</h3>
+                            <input type="number" id="convertValue" placeholder="Enter value" value="1" step="0.01">
+                            <select id="convertFrom">
+                                <option value="m">Meters</option>
+                                <option value="cm">Centimeters</option>
+                                <option value="mm">Millimeters</option>
+                                <option value="ft">Feet</option>
+                                <option value="in">Inches</option>
+                            </select>
+                            <span>to</span>
+                            <select id="convertTo">
+                                <option value="cm">Centimeters</option>
+                                <option value="m">Meters</option>
+                                <option value="mm">Millimeters</option>
+                                <option value="ft">Feet</option>
+                                <option value="in">Inches</option>
+                            </select>
+                            <button id="convertBtn"><i class="fas fa-sync-alt"></i> Convert</button>
+                            <p id="conversionResult">1 m = 100 cm</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h3><i class="fas fa-shapes"></i> Area Calculator</h3>
+                            <select id="shapeType">
+                                <option value="rectangle">Rectangle</option>
+                                <option value="triangle">Triangle</option>
+                                <option value="circle">Circle</option>
+                            </select>
+                            <div id="areaInputs">
+                                <input type="number" id="areaLength" placeholder="Length" value="5" step="0.01">
+                                <input type="number" id="areaWidth" placeholder="Width" value="3" step="0.01">
+                            </div>
+                            <button id="areaCalcBtn"><i class="fas fa-calculator"></i> Calculate Area</button>
+                            <p id="areaResult">Area: 15.00 m²</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section" id="features">
+                <div class="section-header">
+                    <h2>Why Choose ConstructCalc Pro?</h2>
+                    <p>Powerful features designed for construction professionals</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Accurate Calculations</h3>
+                        <p>Precise material estimates with industry-standard formulas and waste calculations</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h3>Cost Estimation</h3>
+                        <p>Real-time cost calculations with up-to-date material prices from major brands</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Works perfectly on all devices - desktop, tablet, and mobile phones</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3>Export Reports</h3>
+                        <p>Generate and export detailed PDF reports for your projects</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-calculator"></i>
+                        <span>ConstructCalc Pro</span>
+                    </div>
+                    <p class="footer-description">
+                        Professional construction calculator suite for accurate material estimation and cost calculations. Trusted by builders, contractors, and engineers.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Calculators</h4>
+                    <ul class="footer-links">
+                        <li><a href="#concrete">Concrete Calculator</a></li>
+                        <li><a href="#brickwork">Brickwork Calculator</a></li>
+                        <li><a href="#plaster">Plaster Calculator</a></li>
+                        <li><a href="#flooring">Flooring Calculator</a></li>
+                        <li><a href="#paint">Paint Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@constructcalc.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Odisha, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 ConstructCalc Pro. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+	<script>
+document.querySelector('.btn-secondary').addEventListener('click', function () {
+    const activeTab = document.querySelector('.tab-content.active');
+    const results = activeTab.querySelector('.results');
+
+    if (!results) {
+        alert('Please calculate first before exporting.');
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+
+    let y = 10;
+    pdf.setFontSize(16);
+    pdf.text("ConstructCalc Pro - Final Calculation Report", 10, y);
+    y += 10;
+
+    pdf.setFontSize(12);
+    const lines = results.innerText.split('\n');
+    lines.forEach(line => {
+        pdf.text(line.trim(), 10, y);
+        y += 8;
+    });
+
+    pdf.save("Final_Calculation_Report.pdf");
+});
+</script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
